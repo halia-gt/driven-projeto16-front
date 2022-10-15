@@ -48,6 +48,11 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         background-color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
     }
 `;
 

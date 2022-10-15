@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export default function Button ({ children, handleClick = null }) {
     return (
-        <ButtonWrapper onClick={handleClick}>
+        <Wrapper onClick={handleClick}>
             { children }
-        </ButtonWrapper>    
+        </Wrapper>    
     );
 }
 
-const ButtonWrapper = styled.button`
+const Wrapper = styled.button`
     background: #5D9040;
     border: none;
     border-radius: 12px;

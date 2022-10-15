@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GlobalStyle from "../assets/styles/GlobalStyle";
-import Login from "./Login";
+import GlobalStyle from "./assets/styles/GlobalStyle";
+import Login from "./pages/Login";
 
 export default function App() {
   return (
