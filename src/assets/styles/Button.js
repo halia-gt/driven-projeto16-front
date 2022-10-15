@@ -12,7 +12,6 @@ const Wrapper = styled.button`
     background: #5D9040;
     border: none;
     border-radius: 12px;
-    box-shadow: 0px 4px 8px rgba(211, 38, 38, 0.25);
     color: #FFFFFF;
     width: 182px;
     height: 60px;
