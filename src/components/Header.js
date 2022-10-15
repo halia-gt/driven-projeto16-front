@@ -12,7 +12,6 @@ export default function Header({ children, user = false }) {
                             <p>Ranking</p>
                             <p>Sair</p>
                         </aside>
-                
                     ) : (
                         <aside>
                             <p>Entrar</p>
@@ -35,19 +34,25 @@ const Wrapper = styled.header`
     section {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
     }
 
-    span {
+    section span {
         color: #5D9040;
     }
 
-    aside {
+    section aside {
         display: flex;
     }
 
-    aside p {
+    section aside p {
         margin-left: 27px;
         color: #9c9c9c;
+    }
+
+    section aside p:hover {
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     div {

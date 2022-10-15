@@ -22,7 +22,7 @@ function signIp(body) {
 }
 
 function getRankings() {
-    const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/rankings`);
+    const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/ranking`);
     return promise;
 }
 
