@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./assets/styles/GlobalStyle";
-import Login from "./pages/Login";
+import Ranking from "./pages/Ranking";
 
 export default function App() {
   return (
     <BrowserRouter>
         <GlobalStyle />
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Ranking />} />
             </Routes>
     </BrowserRouter>
   );
