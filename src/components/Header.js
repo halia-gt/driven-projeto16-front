@@ -32,9 +32,9 @@ export default function Header({ auth = false, login = false, sign = false }) {
                 {auth ? <span>Seja bem-vindo(a), {user ? user.name : null}</span> : <span></span>}
                 {auth ? (
                         <aside>
-                            <p onClick={() => {navigate("/home")}}>Home</p>
-                            <p onClick={() => {navigate("/")}}>Ranking</p>
-                            <p onClick={handleClick}>Sair</p>
+                            <P onClick={() => {navigate("/home")}}>Home</P>
+                            <P onClick={() => {navigate("/")}}>Ranking</P>
+                            <P onClick={handleClick}>Sair</P>
                         </aside>
                     ) : (
                         <aside>
@@ -69,11 +69,6 @@ const Wrapper = styled.header`
         display: flex;
     }
 
-    section aside p {
-        margin-left: 27px;
-        color: #9c9c9c;
-    }
-
     section aside p:hover {
         text-decoration: underline;
         cursor: pointer;
@@ -94,10 +89,15 @@ const Wrapper = styled.header`
     }
 `;
 
-const Plogin = styled.p`
+const P = styled.p`
+    margin-left: 27px;
+    color: #9c9c9c;
+`;
+
+const Plogin = styled(P)`
     color: ${props => props.login ? "#5D9040" : "#9c9c9c"};
 `;
 
-const Psign = styled.p`
+const Psign = styled(P)`
     color: ${props => props.sign ? "#5D9040" : "#9c9c9c"};
 `;
