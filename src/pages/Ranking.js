@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { GenericWrapper } from "../assets/styles/Wrapper";
 import Header from "../components/Header";
@@ -6,8 +7,9 @@ import { FaTrophy } from "react-icons/fa";
 import { getRankings } from "../services/api";
 import Rank from "../components/Rank";
 
-export default function Ranking({ user = false }) {
+export default function Ranking() {
     const [ranks, setRanks] = useState([]);
+    const log = useLocation().state;
 
     useEffect(() => {
         getRankings()
@@ -31,7 +33,7 @@ export default function Ranking({ user = false }) {
                     <Rank key={rank.id} index={index + 1} {...rank} />
                 ))}
             </ul>
-            {user ? <></> : <p>Crie sua conta para usar nosso serviço!</p>}
+            {log ? <></> : <p>Crie sua conta para usar nosso serviço!</p>}
         </Wrapper>
     );
 }

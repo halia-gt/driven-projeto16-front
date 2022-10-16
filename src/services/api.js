@@ -16,7 +16,7 @@ function signUp(body) {
     return promise;
 }
 
-function signIp(body) {
+function signIn(body) {
     const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signin`, body);
     return promise;
 }
@@ -28,6 +28,6 @@ function getRankings() {
 
 export {
     signUp,
-    signIp,
+    signIn,
     getRankings
 }

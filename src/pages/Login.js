@@ -1,18 +1,16 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { GenericWrapper } from "../assets/styles/Wrapper";
 import Header from "../components/Header";
 import Input from "../assets/styles/Input";
 import Button from "../assets/styles/Button";
-import { signUp } from "../services/api";
+import { signIn } from "../services/api";
 
-export default function SignUp() {
+export default function Login() {
     const [data, setData] = useState({
-        name: "",
         email: "",
         password: "",
-        confirmPassword: ""
     });
     const navigate = useNavigate();
 
@@ -26,9 +24,9 @@ export default function SignUp() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        signUp(data)
+        signIn(data)
             .then(() => {
-                navigate("/login");
+                navigate("/", {state: true});
             })
             .catch((error) => {
                 alert("Revise os dados");
@@ -40,13 +38,6 @@ export default function SignUp() {
         <Wrapper>
             <Header />
             <form onSubmit={handleSubmit}>
-                <Input
-                    type="text"
-                    placeholder="Nome"
-                    name="name"
-                    value={data.name}
-                    updateData={updateData}
-                />
                 <Input
                     type="email"
                     placeholder="E-mail"
@@ -61,15 +52,8 @@ export default function SignUp() {
                     value={data.password}
                     updateData={updateData}
                 />
-                <Input
-                    type="password"
-                    placeholder="Confirmar senha"
-                    name="confirmPassword"
-                    value={data.confirmPassword}
-                    updateData={updateData}
-                />
 
-                <Button>Criar Conta</Button>
+                <Button>Entrar</Button>
             </form>
         </Wrapper>
     );
