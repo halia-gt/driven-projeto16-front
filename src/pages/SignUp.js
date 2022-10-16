@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { GenericWrapper } from "../assets/styles/Wrapper";
 import Header from "../components/Header";
 import Input from "../assets/styles/Input";
@@ -15,6 +15,7 @@ export default function SignUp() {
         confirmPassword: ""
     });
     const navigate = useNavigate();
+    const auth = JSON.parse(localStorage.getItem("shortly"));
 
     function updateData(e) {
         setData({
@@ -36,9 +37,15 @@ export default function SignUp() {
             });
     }
 
+    if (auth) {
+        return (
+            <Navigate to="/" />
+        );
+    }
+
     return(
         <Wrapper>
-            <Header />
+            <Header sign={true} />
             <form onSubmit={handleSubmit}>
                 <Input
                     type="text"

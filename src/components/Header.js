@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {ReactComponent as Logo} from "../assets/img/shorts.svg";
 
-export default function Header({ auth }) {
+export default function Header({ auth = false, login = false, sign = false }) {
     const navigate = useNavigate();
 
     function handleClick() {
@@ -11,7 +11,7 @@ export default function Header({ auth }) {
     }
 
     return (
-        <Wrapper>
+        <Wrapper >
             <section>
                 {auth ? <span>Seja bem-vindo(a), {}</span> : <span></span>}
                 {auth ? (
@@ -22,8 +22,8 @@ export default function Header({ auth }) {
                         </aside>
                     ) : (
                         <aside>
-                            <p>Entrar</p>
-                            <p>Cadastrar-se</p>
+                            <Plogin login={login} onClick={() => {navigate("/login")}}>Entrar</Plogin>
+                            <Psign sign={sign} onClick={() => {navigate("/signup")}}>Cadastrar-se</Psign>
                         </aside>
                     )
                 }
@@ -76,4 +76,12 @@ const Wrapper = styled.header`
         color: #000000;
         font-size: 64px;
     }
+`;
+
+const Plogin = styled.p`
+    color: ${props => props.login ? "#5D9040" : "#9c9c9c"};
+`;
+
+const Psign = styled.p`
+    color: ${props => props.sign ? "#5D9040" : "#9c9c9c"};
 `;

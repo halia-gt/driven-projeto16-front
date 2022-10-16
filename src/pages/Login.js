@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { GenericWrapper } from "../assets/styles/Wrapper";
 import Header from "../components/Header";
@@ -13,6 +13,7 @@ export default function Login() {
         password: "",
     });
     const navigate = useNavigate();
+    const auth = JSON.parse(localStorage.getItem("shortly"));
 
     function updateData(e) {
         setData({
@@ -36,9 +37,15 @@ export default function Login() {
             });
     }
 
+    if (auth) {
+        return (
+            <Navigate to="/" />
+        );
+    }
+
     return(
         <Wrapper>
-            <Header />
+            <Header login={true} />
             <form onSubmit={handleSubmit}>
                 <Input
                     type="email"
