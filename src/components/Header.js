@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { userContext } from "../contexts/userContext";
 import {ReactComponent as Logo} from "../assets/img/shorts.svg";
+import { getUser } from "../services/api";
 
 export default function Header({ auth = false, login = false, sign = false }) {
+    const { user, setUser } = useContext(userContext);
     const navigate = useNavigate();
 
     function handleClick() {
@@ -10,10 +14,22 @@ export default function Header({ auth = false, login = false, sign = false }) {
         navigate("/");
     }
 
+    useEffect(() => {
+        if (auth) {
+            getUser()
+                .then((answer) => {
+                    setUser(answer.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    }, []);
+
     return (
         <Wrapper >
             <section>
-                {auth ? <span>Seja bem-vindo(a), {}</span> : <span></span>}
+                {auth ? <span>Seja bem-vindo(a), {user ? user.name : null}</span> : <span></span>}
                 {auth ? (
                         <aside>
                             <p onClick={() => {navigate("/home")}}>Home</p>
