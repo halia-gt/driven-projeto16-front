@@ -7,7 +7,7 @@ export default function Header({ auth = false, login = false, sign = false }) {
 
     function handleClick() {
         localStorage.removeItem("shortly");
-        navigate("/", { state: false });
+        navigate("/");
     }
 
     return (
