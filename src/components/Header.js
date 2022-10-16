@@ -5,7 +5,7 @@ import { userContext } from "../contexts/userContext";
 import {ReactComponent as Logo} from "../assets/img/shorts.svg";
 import { getUser } from "../services/api";
 
-export default function Header({ auth = false, login = false, sign = false }) {
+export default function Header({ auth = false, login = false, sign = false, home = false, rank = false }) {
     const { user, setUser } = useContext(userContext);
     const navigate = useNavigate();
 
@@ -32,8 +32,8 @@ export default function Header({ auth = false, login = false, sign = false }) {
                 {auth ? <span>Seja bem-vindo(a), {user ? user.name : null}</span> : <span></span>}
                 {auth ? (
                         <aside>
-                            <P onClick={() => {navigate("/home")}}>Home</P>
-                            <P onClick={() => {navigate("/")}}>Ranking</P>
+                            <Phome home={home} onClick={() => {navigate("/home")}}>Home</Phome>
+                            <Prank rank={rank} onClick={() => {navigate("/")}}>Ranking</Prank>
                             <P onClick={handleClick}>Sair</P>
                         </aside>
                     ) : (
@@ -100,4 +100,12 @@ const Plogin = styled(P)`
 
 const Psign = styled(P)`
     color: ${props => props.sign ? "#5D9040" : "#9c9c9c"};
+`;
+
+const Phome = styled(P)`
+    color: ${props => props.home ? "#5D9040" : "#9c9c9c"};
+`;
+
+const Prank = styled(P)`
+    color: ${props => props.rank ? "#5D9040" : "#9c9c9c"};
 `;

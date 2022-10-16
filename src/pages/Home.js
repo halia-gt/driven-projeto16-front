@@ -12,7 +12,7 @@ export default function Home() {
 
     return (
         <>
-            <Header auth={true} />
+            <Header auth={true} home={true} />
         </>
     );
 }

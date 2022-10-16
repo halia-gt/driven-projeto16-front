@@ -23,7 +23,7 @@ export default function Ranking() {
 
     return(
         <Wrapper>
-            <Header auth={auth ? true : false} />
+            <Header auth={auth ? true : false} rank={true} />
             <h2>
                 <FaTrophy />
                 <p>Rankings</p>
