@@ -32,9 +32,16 @@ function getUser() {
     return promise;
 }
 
+function postUrl(body) {
+    const config = createHeaders();
+    const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/urls/shorten`, body, config);
+    return promise;
+}
+
 export {
     signUp,
     signIn,
     getRankings,
-    getUser
+    getUser,
+    postUrl
 }
