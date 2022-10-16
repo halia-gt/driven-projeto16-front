@@ -1,15 +1,17 @@
 import { Navigate } from "react-router-dom";
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GenericWrapper } from "../assets/styles/Wrapper";
 import Header from "../components/Header";
 import Input from "../assets/styles/Input";
 import Button from "../assets/styles/Button";
 import { postUrl } from "../services/api";
 import { userContext } from "../contexts/userContext";
+import Li from "../components/Link";
+import { getUser } from "../services/api";
 
 export default function Home() {
-    const { user } = useContext(userContext);
+    const { user, setUser } = useContext(userContext);
     const [data, setData] = useState({
         url: "",
     });
@@ -35,13 +37,23 @@ export default function Home() {
             });
     }
 
+    useEffect(() => {
+        if (auth) {
+            getUser()
+                .then((answer) => {
+                    setUser(answer.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    }, []);
+
     if (!auth) {
         return (
             <Navigate to="/" />
         );
     }
-
-    console.log(user.shortenedUrls)
 
     return (
         <Wrapper>
@@ -56,11 +68,16 @@ export default function Home() {
                 />
                 <Button>Encurtar link</Button>
             </form>
-            <ul>
-                {user.shortenedUrls.map(link => (
+            {user ? (
+                    <ul>
+                        {user.shortenedUrls.map(link => (
+                            <Li key={link.id} {...link} />
+                        ))}
+                    </ul>
+                ) : (
                     <></>
-                ))}
-            </ul>
+                )
+            }
         </Wrapper>
     );
 }
@@ -71,10 +88,5 @@ const Wrapper = styled(GenericWrapper)`
         width: 100%;
         justify-content: space-between;
         margin: 60px 0;
-    }
-
-    ul li {
-        margin-bottom: 40px;
-        border-radius: 12px;
     }
 `;
