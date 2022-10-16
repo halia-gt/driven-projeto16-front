@@ -9,7 +9,7 @@ import Rank from "../components/Rank";
 
 export default function Ranking() {
     const [ranks, setRanks] = useState([]);
-    const log = useLocation().state;
+    const auth = JSON.parse(localStorage.getItem("shortly"));
 
     useEffect(() => {
         getRankings()
@@ -23,7 +23,7 @@ export default function Ranking() {
 
     return(
         <Wrapper>
-            <Header />
+            <Header auth={auth ? true : false} />
             <h2>
                 <FaTrophy />
                 <p>Rankings</p>
@@ -33,7 +33,7 @@ export default function Ranking() {
                     <Rank key={rank.id} index={index + 1} {...rank} />
                 ))}
             </ul>
-            {log ? <></> : <p>Crie sua conta para usar nosso serviço!</p>}
+            {auth ? <></> : <p>Crie sua conta para usar nosso serviço!</p>}
         </Wrapper>
     );
 }

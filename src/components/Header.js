@@ -1,16 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {ReactComponent as Logo} from "../assets/img/shorts.svg";
 
-export default function Header({ children, user = false }) {
+export default function Header({ auth }) {
+    const navigate = useNavigate();
+
+    function handleClick() {
+        localStorage.removeItem("shortly");
+        navigate("/", { state: false });
+    }
+
     return (
-        <Wrapper user={user}>
+        <Wrapper>
             <section>
-                {user ? <span>Seja bem-vindo(a), Pessoa!</span> : <span></span>}
-                {user ? (
+                {auth ? <span>Seja bem-vindo(a), {}</span> : <span></span>}
+                {auth ? (
                         <aside>
-                            <p>Home</p>
-                            <p>Ranking</p>
-                            <p>Sair</p>
+                            <p onClick={() => {navigate("/home")}}>Home</p>
+                            <p onClick={() => {navigate("/")}}>Ranking</p>
+                            <p onClick={handleClick}>Sair</p>
                         </aside>
                     ) : (
                         <aside>

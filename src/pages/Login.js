@@ -25,8 +25,10 @@ export default function Login() {
         e.preventDefault();
 
         signIn(data)
-            .then(() => {
-                navigate("/", {state: true});
+            .then((answer) => {
+                const infoJSON = JSON.stringify({ token: answer.data.token });
+                localStorage.setItem("shortly", infoJSON);
+                navigate("/home");
             })
             .catch((error) => {
                 alert("Revise os dados");
