@@ -4,7 +4,7 @@ function createHeaders() {
     const auth = JSON.parse(localStorage.getItem("shortly"));
     const config = {
         headers: {
-        Authorization: `Bearer ${auth.token}`,
+            Authorization: `Bearer ${auth.token}`,
         },
     };
 
@@ -26,8 +26,15 @@ function getRankings() {
     return promise;
 }
 
+function getUser() {
+    const config = createHeaders();
+    const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/me`, config);
+    return promise;
+}
+
 export {
     signUp,
     signIn,
-    getRankings
+    getRankings,
+    getUser
 }
