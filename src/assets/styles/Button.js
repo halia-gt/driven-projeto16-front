@@ -22,4 +22,9 @@ const Wrapper = styled.button`
         font-size: calc(14px / 0.97);
         transform: scale(0.97);
     }
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.3);
+    }
 `;

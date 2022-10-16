@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Input({ type, placeholder, name, updateData, value, disabled }) {
+export default function Input({ type, placeholder, name, updateData, value }) {
     return (
         <Wrapper
             type={type}
@@ -8,7 +8,6 @@ export default function Input({ type, placeholder, name, updateData, value, disa
             name={name}
             value={value}
             onChange={updateData}
-            disabled={disabled}
             required
         />
     );
