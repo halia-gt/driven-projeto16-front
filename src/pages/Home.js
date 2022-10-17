@@ -12,6 +12,7 @@ import { getUser } from "../services/api";
 
 export default function Home() {
     const { user, setUser } = useContext(userContext);
+    const [reset, setReset] = useState(false);
     const [data, setData] = useState({
         url: "",
     });
@@ -28,8 +29,8 @@ export default function Home() {
         e.preventDefault();
 
         postUrl(data)
-            .then((answer) => {
-                console.log(answer.data);
+            .then(() => {
+                setReset(!reset);
             })
             .catch((error) => {
                 alert("Tem certeza que é uma url válida?");
@@ -47,7 +48,7 @@ export default function Home() {
                     console.log(error);
                 })
         }
-    }, []);
+    }, [reset]);
 
     if (!auth) {
         return (
@@ -71,7 +72,7 @@ export default function Home() {
             {user ? (
                     <ul>
                         {user.shortenedUrls.map(link => (
-                            <Li key={link.id} {...link} />
+                            <Li key={link.id} {...link} reset={reset} setReset={setReset} />
                         ))}
                     </ul>
                 ) : (

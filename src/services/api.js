@@ -38,10 +38,17 @@ function postUrl(body) {
     return promise;
 }
 
+function deleteUrl(id) {
+    const config = createHeaders();
+    const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/urls/${id}`, config);
+    return promise;
+}
+
 export {
     signUp,
     signIn,
     getRankings,
     getUser,
-    postUrl
+    postUrl,
+    deleteUrl
 }
