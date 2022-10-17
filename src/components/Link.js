@@ -21,7 +21,7 @@ export default function Rank({ id, shortUrl, url, visitCount, reset, setReset })
         <Li>
             <section>
                 <span>{url}</span>
-                <a href={redirectUrl} target="_blank" ><span onClick={() => {setReset(!reset)}}>{shortUrl}</span></a>
+                <span onClick={() => {setReset(!reset)}}><a href={redirectUrl} target="_blank" >{shortUrl}</a></span>
                 <span>Quantidade de visitantes: {visitCount}</span>
             </section>
             <div onClick={handleClick} >
